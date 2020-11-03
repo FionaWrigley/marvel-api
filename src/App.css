@@ -21,13 +21,21 @@ body {
     /* background-color: black; */
 }
 
+.thumbnails {
+    width: 10em;
+}
 .logo {
     width: 20%;
     margin: 0;
     /* margin: 1em; */
 }
 
+.listitem-class {
+    color: Blue;
+    background: yellow;
+    height: 20px;
 
+}
 
 /* .App {
     background-color: black; 
