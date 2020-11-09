@@ -1,3 +1,8 @@
+/* :root {
+    var --imageLg1x:url("https\:\/\/terrigen-cdn-dev\.marvel\.com\/content\/prod\/1x\/012scw_ons_mas_dsk_01_0\.jpg"); 
+    var --imageSm1x:url("https\:\/\/terrigen-cdn-dev\.marvel\.com\/content\/prod\/1x\/012scw_ons_mas_mob_01_0\.jpg");
+} */
+
 header {
     background-color: black;
     /* color: red;
@@ -37,8 +42,10 @@ body {
 
 }
 
-/* .App {
-    background-color: black; 
-    margin: 0;
-    padding: 0;
-}   */
+.search {
+    background-image: url("https://terrigen-cdn-dev.marvel.com/content/prod/1x/012scw_ons_mas_mob_01_0.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 30em;
+} 
+
