@@ -42,22 +42,26 @@ class Character extends React.Component {
             description,
             thumbnail,
             comics,
+            series,
             events
         } = this.props.character;
         console.log("character");
         console.log(this.props.character);
         return (
-
-            <Card className="text-center card-width-25">
-                <Card.Img variant="top" src = {`${thumbnail.path}.${thumbnail.extension}`} />
+            <div className="character">
+            <Card className="text-center profileCard">
+                <Card.Img className="profilePic" variant="left" src = {`${thumbnail.path}.${thumbnail.extension}`} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>{description}</Card.Text>
 
+                    <Card.Title>Series</Card.Title>
+                    {series.items.map((srs, index) => <Card.Text key={srs.name+index}>{srs.name}</Card.Text>)}
                     <Card.Title>Comics</Card.Title>
-                    <Card.Text>{comics.items[0].name}</Card.Text>
+                    {comics.items.map((cmcs, index) => <Card.Text key={cmcs.name+index}>{cmcs.name}</Card.Text>)}  
                 </Card.Body>
             </Card>
+            </div>
         );
 
     }

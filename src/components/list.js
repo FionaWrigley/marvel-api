@@ -5,8 +5,9 @@ class List extends React.Component {
 
     render() {
         return (
-            <div>
-                { this.props.results.map((card, index) => < ListItem card={card} key={index} handleClick={(metaData) => this.props.handleClick(metaData)} 
+
+            <div className="resultGrid">
+                { this.props.results.map((card, index) => <ListItem  card={card} key={index} handleClick={(metaData) => this.props.handleClick(metaData)} 
              />) }
             </div>
         );

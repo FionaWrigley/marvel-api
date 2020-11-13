@@ -9,14 +9,14 @@ class ListItem extends React.Component {
         const {id, name, title, description, thumbnail, resourceURI} = metaData;
       
         return (
-            <Card className="text-center">
+            <Card onClick= {() => this.props.handleClick(metaData)} variant="warning" className="text-center card-width-15">
                 <Card.Img variant="top" src={`${thumbnail.path}.${thumbnail.extension}`}/>
                 <Card.Body>
                     <Card.Title>{(name)
                             ? name
                             : title}
                     </Card.Title>
-                    <Button onClick= {() => this.props.handleClick(metaData)} variant="warning">View deatils</Button>
+                    {/* <Button onClick= {() => this.props.handleClick(metaData)} variant="warning">View deatils</Button> */}
                 </Card.Body>
             </Card>
         );

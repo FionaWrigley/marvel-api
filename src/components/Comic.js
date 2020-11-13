@@ -14,6 +14,7 @@ class Comic extends React.Component {
             characters,
             issueNumber,
             creators,
+            images,
             events
         } = this.props.comic;
         console.log(this.props.comic);
@@ -23,14 +24,18 @@ class Comic extends React.Component {
                 <Card.Img variant="top" src = {`${thumbnail.path}.${thumbnail.extension}`} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <Card.Text>{issueNumber}</Card.Text>
+                    <Card.Text>Issue# {issueNumber}</Card.Text>
                     <Card.Text>{description}</Card.Text>
 
                     <Card.Title>Characters</Card.Title>
-                    <Card.Text>{characters.items[0].name}</Card.Text>
-
+                       
+                        {characters.items.map((chars, index) => <Card.Text key={chars.name+index}>{chars.name}</Card.Text>)}
+                        
+                   
                     <Card.Title>Creators</Card.Title>
-                    <Card.Text>{creators.items[0].name}</Card.Text>
+                    {creators.items.map((crtrs, index) => <Card.Text key={crtrs.name+index}>{crtrs.name}</Card.Text>)}
+
+                    {images.map((imgs, index) => <Card.Img key={imgs.path} variant="top" src = {`${imgs.path}.${imgs.extension}`} />)}
                 </Card.Body>
             </Card>
         );

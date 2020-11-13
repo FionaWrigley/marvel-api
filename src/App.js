@@ -31,12 +31,15 @@ const url = "https://gateway.marvel.com:443/v1/public/";
 
 class App extends Component {
 
+    this
     state = {
         marvelData: [],
         isLoading: true,
         ctype: "characters",
         cardClicked: false,
-        card: []
+        card: [],
+        searchValue: ""
+
     };
 
     handleClick(metaData) {
@@ -56,30 +59,40 @@ class App extends Component {
             .add('active');
 
         this.setState({
-            ctype: link
-        }, () => {
-            this.componentDidMount(document.getElementById('search').value);
-        });
+            ctype: link,
+            cardClicked: false,
+            searchValue: document
+                .getElementById('search')
+                .value
+        }
+        , () => {
+            this.componentDidMount();
+        }
+        );
     }
+
 
     handleKeyPress(key) {
         console.log("key value: " + key.key);
         console.log("key target value: " + key.target.value);
 
         if (key.key === "Enter") {
-            console.log("key.target.value" + key.target.value);
-            this.componentDidMount(key.target.value);
+           
+            this.setState({
+                searchValue: key.target.value
+            }
+            , () => {
+                this.componentDidMount();
+            });
         }
     }
 
+
     // /////////////////////////////////////////////////////////////////////////////
     // / ///////////////////////
-    componentDidMount(searchVal) {
+    async componentDidMount() {
 
-        const searchInput = searchVal;
-        console.log(searchVal);
-        //  const searchInput = document      .getElementById("search")      .value;
-        console.log("search value in component did mount: " + searchInput);
+        const searchInput = this.state.searchValue;
 
         axios.get(url + this.state.ctype, {
             params: Object.assign({
@@ -97,8 +110,6 @@ class App extends Component {
                         titleStartsWith: searchInput
                     }
                     : "")))
-            // (this.state.ctype === 'characters' ? { nameStartsWith: searchInput } :
-            // {titleStartsWith: searchInput}))
         }).then((response) => {
             console.log(response)
             console.log("response tracking")
@@ -108,9 +119,11 @@ class App extends Component {
                 console.log('error tracking')
                 console.log(err);
             });
-        this.render();
     }
 
+    submitHandler(e){
+        e.preventDefault();
+    }
     // /////////////////////////////////////////////////////////////////////////////
     // / /////////////////////
 
@@ -125,9 +138,10 @@ class App extends Component {
                     <Navbar.Brand>Search
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Form inline>
-                            <FormControl type="text" id="search" // value=""
-                                onKeyUp={(key) => this.handleKeyPress(key)} placeholder="Search" className="mr-sm-2"/>
+                        <Form onSubmit={this.submitHandler} inline>
+                             <FormControl type="text" id="search" 
+                                 onKeyUp={(key) => this.handleKeyPress(key)} placeholder="Search" className="mr-sm-2"/>
+                              
                         </Form>
                         <Nav.Link
                             id="characters"
@@ -136,7 +150,8 @@ class App extends Component {
                         <Nav.Link id="comics" onClick={() => this.setCType("comics")}>Comics</Nav.Link>
                     </Nav>
                 </Navbar>
-                <div>
+                <div className="body">
+
                     {(this.state.cardClicked)
                         ? ((this.state.ctype === 'characters')
                             ? <Character character ={this.state.card}/>
