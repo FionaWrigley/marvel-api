@@ -10,10 +10,8 @@ const time_stamp = 1;
 
 class Character extends React.Component {
 
-    
     // constructor(props) {
     //     super(props);
-
     //     this.state = {
     //         characterData: []
     //     };
@@ -63,7 +61,6 @@ class Character extends React.Component {
             </Card>
             </div>
         );
-
     }
 }
 export default Character;

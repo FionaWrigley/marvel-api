@@ -1,9 +1,8 @@
- :root {
+ /* :root {
     /* var --imageLg1x:url("https\:\/\/terrigen-cdn-dev\.marvel\.com\/content\/prod\/1x\/012scw_ons_mas_dsk_01_0\.jpg"); 
     var --imageSm1x:url("https\:\/\/terrigen-cdn-dev\.marvel\.com\/content\/prod\/1x\/012scw_ons_mas_mob_01_0\.jpg"); */
     /* var --MarvelRed: #ED1D24; */
-
-} 
+  
 
 header {
     background-color: black;

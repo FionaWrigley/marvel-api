@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as bs from 'bootstrap/dist/css/bootstrap.css';
+// import * as bs from 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import Header from './components/Header';
 import Character from './components/Character';
@@ -77,7 +77,6 @@ class App extends Component {
         console.log("key target value: " + key.target.value);
 
         if (key.key === "Enter") {
-           
             this.setState({
                 searchValue: key.target.value
             }
