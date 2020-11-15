@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import '/..env';
 import axios from 'axios';
 import Header from './components/Header';
 import Character from './components/Character';
@@ -21,14 +22,16 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  
+//   require('dotenv').config();
 
 // const p_key = "7e2bff76f1dc639652508d49739b83a6d31873a4";
 // const curr_date = new Date();
 const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
-const api_key = "9d05ce6e21991600d98e5945c00379bc";
+const { REACT_APP_APIKEY } = process.env;
+// const api_key = process.env.REACT_APP_API_KEY;
 const time_stamp = 1;
 const url = "https://gateway.marvel.com:443/v1/public/";
-
 
 class App extends Component {
 
@@ -89,10 +92,12 @@ class App extends Component {
     async componentDidMount() {
 
         const searchInput = this.state.searchValue;
+        console.log(REACT_APP_APIKEY);
+        console.log("//////////////////////////////////////////");
 
         axios.get(url + this.state.ctype, {
             params: Object.assign({
-                apikey: api_key,
+                apikey: REACT_APP_APIKEY,
                 ts: time_stamp,
                 hash: hashish
             }, (this.state.ctype === 'characters'

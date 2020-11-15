@@ -10,12 +10,6 @@ const time_stamp = 1;
 
 class Character extends React.Component {
 
-    // constructor(props) {     super(props);     this.state = { characterData: []
-    // }; } componentDidMount() {     axios .get(this.props.id, {         params:
-    // Object.assign({apikey: api_key, ts: time_stamp, hash: hashish})     })
-    // .then((response) => { console.log(response) this.setState({characterData:
-    // response.data.data.results[0]});         })     .catch(function (err) {
-    // console.log(err);         }); }
 
     render() {
 
