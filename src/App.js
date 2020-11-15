@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-// import '/..env';
+import React, {Component, useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import Character from './components/Character';
@@ -22,35 +21,35 @@ import {
     Route,
     Link
   } from "react-router-dom";
-  
-//   require('dotenv').config();
 
-// const p_key = "7e2bff76f1dc639652508d49739b83a6d31873a4";
+  
+
 // const curr_date = new Date();
 const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
 const { REACT_APP_APIKEY } = process.env;
-// const api_key = process.env.REACT_APP_API_KEY;
 const time_stamp = 1;
 const url = "https://gateway.marvel.com:443/v1/public/";
 
-class App extends Component {
+    const App = () => {
 
-    state = {
-        marvelData: [],
-        isLoading: true,
-        ctype: "characters",
-        cardClicked: false,
-        card: [],
-        searchValue: ""
-    };
+        const [marvelData, setMarvelData] = useState([]);
+        const [ctype, setCType] = useState('characters');
+        const [cardClicked, setCardClicked] = useState(false);
+        const [card, setCard] = useState([]);
+        const [searchValue, setSearchValue] = useState('');
 
-    handleClick(metaData) {
-        this.setState({cardClicked: true, card: metaData})
+
+    let history = useHistory();
+
+    
+    function handleClick(metaData) {
+        setCardClicked(true);
+        setCard(metaData);
     }
 
-    setCType(link) {
+    function navigate(link) {
         document
-            .getElementById(this.state.ctype)
+            .getElementById(ctype)
             .classList
             .remove('active');
         document
@@ -58,111 +57,88 @@ class App extends Component {
             .classList
             .add('active');
 
-        this.setState({
-            ctype: link,
-            cardClicked: false,
-            searchValue: document
+            setCType(link);
+            setCardClicked(false);
+            setSearchValue(document
                 .getElementById('search')
-                .value
+                .value);
         }
-        , () => {
-            this.componentDidMount();
-            }
-        );
-    }
 
-
-    handleKeyPress(key) {
-        console.log("key value: " + key.key);
-        console.log("key target value: " + key.target.value);
-
+    function handleKeyPress(key) {
         if (key.key === "Enter") {
-            this.setState({
-                searchValue: key.target.value
-            }
-            , () => {
-                this.componentDidMount();
-            });
+            setSearchValue(key.target.value);
         }
     }
-
 
     // /////////////////////////////////////////////////////////////////////////////
     // / ///////////////////////
-    async componentDidMount() {
 
-        const searchInput = this.state.searchValue;
-        console.log(REACT_APP_APIKEY);
-        console.log("//////////////////////////////////////////");
-
-        axios.get(url + this.state.ctype, {
+        useEffect(() => {
+  
+        axios.get(url + ctype, {
             params: Object.assign({
                 apikey: REACT_APP_APIKEY,
                 ts: time_stamp,
                 hash: hashish
-            }, (this.state.ctype === 'characters'
-                ? (searchInput != ""
+        }, ( ctype === 'characters'
+               ? (searchValue != ""
                     ? {
-                        nameStartsWith: searchInput
+                        nameStartsWith: searchValue
                     }
                     : "")
-                : (searchInput != ""
+             : (searchValue != ""
                     ? {
-                        titleStartsWith: searchInput
+                        titleStartsWith: searchValue
                     }
                     : "")))
         }).then((response) => {
             console.log(response)
             console.log("response tracking")
-            this.setState({marvelData: response.data.data.results, isLoading: false});
+            setMarvelData(response.data.data.results)
         })
             .catch(function (err) {
                 console.log('error tracking')
                 console.log(err);
             });
-    }
+    },[ctype, searchValue]);
 
-    submitHandler(e){
+    function submitHandler(e){
         e.preventDefault();
     }
     // /////////////////////////////////////////////////////////////////////////////
     // / /////////////////////
 
-    render() {
-        const {marvelData} = this.state;
-        return (
 
+    return (
             <div className='App'>
-
                 <Header/>
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand>Search
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Form onSubmit={this.submitHandler} inline>
+                        <Form onSubmit={submitHandler} inline>
                              <FormControl type="text" id="search" 
-                                 onKeyUp={(key) => this.handleKeyPress(key)} placeholder="Search" className="mr-sm-2"/>
-                              
+                                 onKeyUp={(key) => handleKeyPress(key)} placeholder="Search" className="mr-sm-2"/>     
                         </Form>
                         <Nav.Link
                             id="characters"
                             className="active"
-                            onClick={() => this.setCType("characters")}>Characters</Nav.Link>
-                        <Nav.Link id="comics" onClick={() => this.setCType("comics")}>Comics</Nav.Link>
+                            onClick={() => navigate("characters")}>Characters</Nav.Link>
+                        <Nav.Link id="comics" onClick={() => navigate("comics")}>Comics</Nav.Link>
                     </Nav>
                 </Navbar>
     
                 <div>
-                    {(this.state.cardClicked)
-                        ? ((this.state.ctype === 'characters')
-                            ? <Character character ={this.state.card}/>
-                            : <Comic comic ={this.state.card}/>)
+                    {(cardClicked)
+                        ? ((ctype === 'characters')
+                            ? <Character character ={card}/>
+                            : <Comic comic ={card}/>)
                         : <List
-                            handleClick={(metaData) => this.handleClick(metaData)}
-                            results={this.state.marvelData}/>}
+                            handleClick={(metaData) => handleClick(metaData)}
+                            results={marvelData}/>}
                 </div>
             </div>
-        )
-    };
-}
+    )
+    }
+    
 export default App;
