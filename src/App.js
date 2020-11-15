@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-// import * as bs from 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import Header from './components/Header';
 import Character from './components/Character';
 import Comic from './components/Comic';
 import './App.css';
 import List from './components/List';
+import { useHistory, useLocation } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -15,23 +15,23 @@ import {
     Row,
     Col
 } from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
-// import {MDBCol, MDBInput} from "mdbreact"; import {Data} from './data'; const
-// char_url =
-// "https://gateway.marvel.com:443/v1/public/characters?apikey=9d05ce6e21991600d
-// 9 8e5" +         "945c00379bc&ts=1&hash=6e039380a3a1af6ca5845c27fdf089a6";
-// const test_url = "https://gateway.marvel.com:443/v1/public/characters?";
-
-const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
-// const curr_date = new Date();
-const api_key = "9d05ce6e21991600d98e5945c00379bc";
 // const p_key = "7e2bff76f1dc639652508d49739b83a6d31873a4";
+// const curr_date = new Date();
+const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
+const api_key = "9d05ce6e21991600d98e5945c00379bc";
 const time_stamp = 1;
 const url = "https://gateway.marvel.com:443/v1/public/";
 
+
 class App extends Component {
 
-    this
     state = {
         marvelData: [],
         isLoading: true,
@@ -39,16 +39,13 @@ class App extends Component {
         cardClicked: false,
         card: [],
         searchValue: ""
-
     };
 
     handleClick(metaData) {
-        console.log("id: " + metaData);
         this.setState({cardClicked: true, card: metaData})
     }
 
     setCType(link) {
-
         document
             .getElementById(this.state.ctype)
             .classList
@@ -67,7 +64,7 @@ class App extends Component {
         }
         , () => {
             this.componentDidMount();
-        }
+            }
         );
     }
 
@@ -149,8 +146,8 @@ class App extends Component {
                         <Nav.Link id="comics" onClick={() => this.setCType("comics")}>Comics</Nav.Link>
                     </Nav>
                 </Navbar>
-                <div className="body">
-
+    
+                <div>
                     {(this.state.cardClicked)
                         ? ((this.state.ctype === 'characters')
                             ? <Character character ={this.state.card}/>

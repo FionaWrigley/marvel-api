@@ -10,27 +10,12 @@ const time_stamp = 1;
 
 class Character extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         characterData: []
-    //     };
-    // }
-
-    // componentDidMount() {
-
-    //     axios
-    //         .get(this.props.id, {
-    //         params: Object.assign({apikey: api_key, ts: time_stamp, hash: hashish})
-    //     })
-    //         .then((response) => {
-    //             console.log(response)
-    //             this.setState({characterData: response.data.data.results[0]});
-    //         })
-    //         .catch(function (err) {
-    //             console.log(err);
-    //         });
-    // }
+    // constructor(props) {     super(props);     this.state = { characterData: []
+    // }; } componentDidMount() {     axios .get(this.props.id, {         params:
+    // Object.assign({apikey: api_key, ts: time_stamp, hash: hashish})     })
+    // .then((response) => { console.log(response) this.setState({characterData:
+    // response.data.data.results[0]});         })     .catch(function (err) {
+    // console.log(err);         }); }
 
     render() {
 
@@ -43,22 +28,41 @@ class Character extends React.Component {
             series,
             events
         } = this.props.character;
-        console.log("character");
-        console.log(this.props.character);
-        return (
-            <div className="character">
-            <Card className="text-center profileCard">
-                <Card.Img className="profilePic" variant="left" src = {`${thumbnail.path}.${thumbnail.extension}`} />
-                <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <Card.Text>{description}</Card.Text>
 
-                    <Card.Title>Series</Card.Title>
-                    {series.items.map((srs, index) => <Card.Text key={srs.name+index}>{srs.name}</Card.Text>)}
-                    <Card.Title>Comics</Card.Title>
-                    {comics.items.map((cmcs, index) => <Card.Text key={cmcs.name+index}>{cmcs.name}</Card.Text>)}  
-                </Card.Body>
-            </Card>
+        return (
+            <div>
+                <div className="profileCard">
+                    <Card className="card-width-25">
+                        <Card.Img
+                            className="profilePic"
+                            variant="left"
+                            src={`${thumbnail.path}.${thumbnail.extension}`}/>
+                    </Card>
+                    <Card className="card-width-25">
+                        <Card.Body>
+                            <Card.Title className="text-center">{name}</Card.Title>
+                            <Card.Text>{description}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
+                <div className= "profileCard">
+                    <Card className="card-width-25">
+                        <Card.Body>
+                            <Card.Title>Series</Card.Title>
+                            {series
+                                .items
+                                .map((srs, index) => <Card.Text key={srs.name + index}>{srs.name}</Card.Text>)}
+                        </Card.Body>
+                    </Card>
+                    <Card className="card-width-25">
+                        <Card.Body>
+                            <Card.Title>Comics</Card.Title>
+                            {comics
+                                .items
+                                .map((cmcs, index) => <Card.Text key={cmcs.name + index}>{cmcs.name}</Card.Text>)}
+                        </Card.Body>
+                    </Card>
+                </div>
             </div>
         );
     }

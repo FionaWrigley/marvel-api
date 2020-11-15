@@ -14,20 +14,25 @@ header {
 body {
     margin: 0;
     padding: 0;
+    background-image: 
+    linear-gradient(
+       #990000be, 
+       #990000be
+     ),  
+     url('./wallpaper.jpg');
 }
 
 .thumbnails {
     width: 10em;
 }
+
 .logo {
     width: 20%;
     margin: 0;
-    /* margin: 1em; */
 }
 
 .listitem-class {
     color: Blue;
-    background: yellow;
     height: 20px;
 
 }
@@ -48,6 +53,11 @@ body {
     box-shadow: 5px 10px 18px black;
 }
 
+.card-width-25 {
+    max-width: 25em;
+    margin: 2em;
+}
+
 .card-width-15:hover{
     transition: box-shadow 0.2s ease-out;
     box-shadow: 12px 10px 20px black;
@@ -60,25 +70,28 @@ body {
    flex-wrap: wrap;
    justify-content: space-evenly;
    /* backdrop  -filter: contrast(1); */
-}
-
-.body {
-    position: relative;
-    background-image: 
-     linear-gradient(
-        #990000be, 
-        #990000be
-      ),  
-      url('./wallpaper.jpg');
-
-      
-}
-
+}      
 .profilePic {
     max-width: 20em;
+    /* max-height: 25em; */
 }
- .profileCard {
+  .profileCard {
+     /* display: flex;
+     flex-direction: row;
+      background: yellow; 
+     border: 1px solid gray; */
+    display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     /* align-items: flex-start; */
+     /* padding: 2em; */
+     flex-wrap: wrap;
+ } 
+ .character {
      display: flex;
-     background: yellow;
-     border: 1px solid gray;
+     justify-content: space-evenly;
+     align-items: center;
+     align-items: flex-start;
+     padding: 2em;
+     flex-wrap: wrap;
  }
