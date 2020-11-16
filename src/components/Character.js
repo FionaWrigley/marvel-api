@@ -1,27 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Card} from 'react-bootstrap';
 import '../App.css';
 
-const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
-// const curr_date = new Date();
-const api_key = "9d05ce6e21991600d98e5945c00379bc";
-// const p_key = "7e2bff76f1dc639652508d49739b83a6d31873a4";
-const time_stamp = 1;
 
 class Character extends React.Component {
-
 
     render() {
 
         const {
-            id,
             name,
             description,
             thumbnail,
             comics,
             series,
-            events
-        } = this.props.character;
+            } = this.props.character;
 
         return (
             <div>

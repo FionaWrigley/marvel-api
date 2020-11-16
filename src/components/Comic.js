@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Card} from 'react-bootstrap';
 import '../App.css';
 
@@ -13,8 +13,6 @@ class Comic extends React.Component {
             characters,
             issueNumber,
             creators,
-            images,
-            events
         } = this.props.comic;
 
         return (

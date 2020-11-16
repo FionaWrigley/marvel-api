@@ -1,16 +1,59 @@
-import React from 'react';
 import ListItem from './ListItem';
+import React, {useState, useEffect} from 'react';
+ import axios from 'axios';
+//import FetchData from './DataFetch';
+ //import {fetchData} from './DataFetch';
 
-class List extends React.Component {
+// // const curr_date = new Date();
+const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
+const {REACT_APP_APIKEY} = process.env;
+const time_stamp = 1;
+const url = "https://gateway.marvel.com:443/v1/public/";
 
-    render() {
+const List = ({ctype, searchValue, handleClick}) => {
+
+        const [marvelData,
+            setMarvelData] = useState([]);
+        
+            useEffect(() => {
+
+                axios.get(url + ctype, {
+                    params: Object.assign({
+                        apikey: REACT_APP_APIKEY,
+                        ts: time_stamp,
+                        hash: hashish
+                    }, (ctype === 'characters'
+                        ? (searchValue !== ""
+                            ? {
+                                nameStartsWith: searchValue
+                            }
+                            : "")
+                        : (searchValue !== ""
+                            ? {
+                                titleStartsWith: searchValue
+                            }
+                            : "")))
+                }).then((response) => {
+                    console.log(response)
+                    setMarvelData(response.data.data.results)
+                })
+                    .catch(function (err) {
+                        console.log('error tracking')
+                        console.log(err);
+                    });
+            }, [ctype, searchValue]);
+
+      
+            // function handleClick(){
+
+            // }
+
         return (
-
             <div className="resultGrid">
-                { this.props.results.map((card, index) => <ListItem  card={card} key={index} handleClick={(metaData) => this.props.handleClick(metaData)} 
+                { marvelData.map((card, index) => <ListItem  card={card} key={index} handleClick={(metaData) => handleClick(metaData)} 
              />) }
             </div>
         );
     }
-}
+
 export default List;
