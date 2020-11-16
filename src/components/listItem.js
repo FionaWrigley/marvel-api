@@ -8,23 +8,32 @@ class ListItem extends React.Component {
     render() {
         const metaData = this.props.card;
         const {id, name, title, thumbnail} = metaData;
-        // const {url} = metaData.urls[0];
 
         return (
-            <Card onClick= {() => this.props.handleClick(metaData)} variant="warning" className="text-center card-width-15">
-                <Link to={(name)
-                            ? "/char?id=" + id
-                            : "/com?id=" + id}>
-                    <Card.Img variant="top" src={`${thumbnail.path}.${thumbnail.extension}`}/>
+
+            <Link
+                to= {(title)
+                ? ((metaData.comics) ? "/eve?id=" + id
+                : "/com?id=" + id)
+                : "/char?id=" + id 
+                }>
+                <Card
+                    onClick=
+                    {() => this.props.handleClick(metaData)}
+                    variant="warning"
+                    className="text-center card-width-15">
+                    
+                        <Card.Img variant="top" src={`${thumbnail.path}.${thumbnail.extension}`}/>
+
+                        <Card.Body>
+                            <Card.Title>{(name)
+                                    ? name
+                                    : title}
+                            </Card.Title>
+                        </Card.Body>
+                    </Card>
                 </Link>
-                <Card.Body>
-                    <Card.Title>{(name)
-                            ? name
-                            : title}
-                    </Card.Title>
-                </Card.Body>
-            </Card>
-        );
+        )
     }
 }
 export default ListItem;

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 import Character from './components/Character';
 import Comic from './components/Comic';
+import Event from './components/Event';
 import './App.css';
 import List from './components/List';
 import {Navbar, Nav, Form, FormControl} from 'react-bootstrap';
@@ -68,6 +69,9 @@ const App = () => {
                         <Link className="linkies" to={"/comics?search=" + searchValue} id="comics">
                             Comics
                         </Link>
+                        <Link className="linkies" to={"/events?search=" + searchValue} id="events">
+                            Events
+                        </Link>
                     </Nav>
                 </Navbar>
 
@@ -90,11 +94,20 @@ const App = () => {
                             ctype="comics"
                             searchValue={searchValue}/>
                     </Route>
+                    <Route exact path="/events">
+                        <List
+                             handleClick={(metaData) => handleClick(metaData)}
+                            ctype="events"
+                            searchValue={searchValue}/>
+                    </Route>
                     <Route exact path="/char">
                         <Character/>
                     </Route>
-                    <Route exact path="/com/">
+                    <Route exact path="/com">
                         <Comic />
+                    </Route>
+                    <Route exact path="/eve">
+                        <Event />
                     </Route>
                 </Switch>
             </Router>

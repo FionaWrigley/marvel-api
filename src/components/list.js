@@ -26,15 +26,15 @@ const List = ({ctype, handleClick}) => {
                 apikey: REACT_APP_APIKEY,
                 ts: time_stamp,
                 hash: hashish
-            }, (ctype === 'characters'
+            }, (ctype === 'comics'
                 ? (searchValue !== ""
                     ? {
-                        nameStartsWith: searchValue
+                        titleStartsWith: searchValue
                     }
                     : "")
                 : (searchValue !== ""
                     ? {
-                        titleStartsWith: searchValue
+                        nameStartsWith: searchValue
                     }
                     : "")))
         }).then((response) => {
