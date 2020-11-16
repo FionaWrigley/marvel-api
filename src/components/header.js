@@ -7,11 +7,8 @@ class Header extends React.Component {
         return (
           
                     <header>
-                  
                         <img className = 'logo' src = {MarvelLogo} alt = {MarvelLogo} />
-                     
                     </header>
-
         );
     }
 }

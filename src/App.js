@@ -1,26 +1,21 @@
 import React, {useState} from 'react';
-// import axios from 'axios';
 import Header from './components/Header';
- import Character from './components/Character';
- import Comic from './components/Comic';
-// import Event from './components/Event';
+import Character from './components/Character';
+import Comic from './components/Comic';
 import './App.css';
 import List from './components/List';
-// import {useHistory, useLocation, useParams} from 'react-router-dom';
 import {Navbar, Nav, Form, FormControl} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 const App = () => {
 
-    const [ctype,
-        setCType] = useState('characters');
-    const [card,
-        setCard] = useState([]);
+    // const [card,
+    //     setCard] = useState([]);
     const [searchValue,
         setSearchValue] = useState('');
 
     function handleClick(metaData) {
-        setCard(metaData);
+        // setCard(metaData);
     }
 
     function handleKeyPress(key) {
@@ -37,6 +32,12 @@ const App = () => {
     function submitHandler(e) {
         e.preventDefault();
     }
+
+    // function getID(){
+    //     let {id} = useParams();
+    //     console.log("id: "+id);
+    //     return (id);
+    // }
 
     // /////////////////////////////////////////////////////////////////////////////
     // / //////////////////////////////////////////////////////////////////////////
@@ -56,14 +57,15 @@ const App = () => {
                                 placeholder="Search"
                                 className="mr-sm-2"/>
                         </Form>
-                        
-                        <Link className = "linkies active"
-                            to= {"/characters?search=" + searchValue}
+
+                        <Link
+                            className="linkies active"
+                            to=
+                            {"/characters?search=" + searchValue}
                             id="characters">
                             Characters
                         </Link>
-                        <Link className = "linkies"
-                        to={"/comics?search=" + searchValue} id="comics">
+                        <Link className="linkies" to={"/comics?search=" + searchValue} id="comics">
                             Comics
                         </Link>
                     </Nav>
@@ -72,27 +74,27 @@ const App = () => {
                 <Switch>
                     <Route exact path="/">
                         <List
-                            handleClick={(metaData) => handleClick(metaData)}
+                             handleClick={(metaData) => handleClick(metaData)}
                             ctype="characters"
                             searchValue=""/>
                     </Route>
                     <Route exact path="/characters">
                         <List
-                            handleClick={(metaData) => handleClick(metaData)}
+                             handleClick={(metaData) => handleClick(metaData)}
                             ctype="characters"
                             searchValue={searchValue}/>
                     </Route>
                     <Route exact path="/comics">
                         <List
-                            handleClick={(metaData) => handleClick(metaData)}
+                             handleClick={(metaData) => handleClick(metaData)}
                             ctype="comics"
                             searchValue={searchValue}/>
                     </Route>
                     <Route exact path="/char">
-                        <Character character ={card}/>
+                        <Character/>
                     </Route>
-                    <Route exact path="/com">
-                        <Comic comic ={card}/>
+                    <Route exact path="/com/">
+                        <Comic />
                     </Route>
                 </Switch>
             </Router>
