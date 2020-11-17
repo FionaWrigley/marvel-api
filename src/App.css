@@ -43,6 +43,7 @@ body {
     background-color:#343a40;
     color: white;
     box-shadow: 5px 10px 18px black;
+    border-radius: 8px;
 }
 
 .card-width-25 {
@@ -116,5 +117,9 @@ body {
      margin: 2em;
      text-align: center;
  }
+
+
+
+ 
 
  

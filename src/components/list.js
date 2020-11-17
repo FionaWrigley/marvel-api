@@ -52,7 +52,7 @@ const List = ({ctype, handleClick}) => {
             {marvelData.map((card, index) => <ListItem
                 card={card}
                 key={index}
-                handleClick={(metaData) => handleClick(metaData)}/>)}
+                />)}
         </div>) : (<div className = "card custom-card">{errorMessage}</div>))
         : ((errorFlag) ? (<div className = "card custom-card">{errorMessage}</div>)
         : (<Loading />))

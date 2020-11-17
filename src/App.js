@@ -1,51 +1,46 @@
 import React, {useState} from 'react';
-import Header from './components/Header';
-import Character from './components/Character';
-import Comic from './components/Comic';
-import Event from './components/Event';
-import './App.css';
-import List from './components/List';
 import {Navbar, Nav, Form, FormControl} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-//import { GetHash } from './components/GetCredentials';
-
+import Character from './components/Character';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Comic from './components/Comic';
+import Event from './components/Event';
+import List from './components/List';
+import './App.css';
 
 const App = () => {
 
-    //GetHash();
-    // const [card,
-    //     setCard] = useState([]);
     const [searchValue,
         setSearchValue] = useState('');
-    
-
-    function handleClick(metaData) {
-        // setCard(metaData);
-    }
 
     function handleKeyPress(key) {
+        setSearchValue(key.target.value);
 
-        console.log(key.target.value);
         if (key.key === "Enter") {
-            setSearchValue(key.target.value);
+            const urlStr = window.location.href;
+            if (urlStr.match(/com/)) {
+                window.location = "/comics?search=" + key.target.value;
+            } else if (urlStr.match(/eve/)) {
+                window.location = "/events?search=" + key.target.value;
+            } else {
+                window.location = "/characters?search=" + key.target.value;
+            }
         }
     }
 
-    // /////////////////////////////////////////////////////////////////////////////
+    // /
+    // ////////////////////////////////////////////////////////////////////////////
     // / ////////////////////////////////////////////////////////////////////////
 
     function submitHandler(e) {
+
         e.preventDefault();
     }
 
-    // function getID(){
-    //     let {id} = useParams();
-    //     console.log("id: "+id);
-    //     return (id);
-    // }
-
     // /////////////////////////////////////////////////////////////////////////////
     // / //////////////////////////////////////////////////////////////////////////
+
     return (
         <div className='App'>
             <Header/>
@@ -81,41 +76,31 @@ const App = () => {
 
                 <Switch>
                     <Route exact path="/">
-                        <List
-                             handleClick={(metaData) => handleClick(metaData)}
-                            ctype="characters"
-                            searchValue=""/>
+                        <List ctype="characters" searchValue={searchValue}/>
                     </Route>
                     <Route exact path="/characters">
-                        <List
-                             handleClick={(metaData) => handleClick(metaData)}
-                            ctype="characters"
-                            searchValue={searchValue}/>
+
+                        <List ctype="characters" searchValue={searchValue}/>
+
                     </Route>
                     <Route exact path="/comics">
-                        <List
-                             handleClick={(metaData) => handleClick(metaData)}
-                            ctype="comics"
-                            searchValue={searchValue}/>
+                        <List ctype="comics" searchValue={searchValue}/>
                     </Route>
                     <Route exact path="/events">
-                        <List
-                             handleClick={(metaData) => handleClick(metaData)}
-                            ctype="events"
-                            searchValue={searchValue}/>
+                        <List ctype="events" searchValue={searchValue}/>
                     </Route>
                     <Route exact path="/char">
                         <Character/>
                     </Route>
                     <Route exact path="/com">
-                        <Comic />
+                        <Comic/>
                     </Route>
                     <Route exact path="/eve">
-                        <Event />
+                        <Event/>
                     </Route>
                 </Switch>
             </Router>
-
+            <Footer/>
         </div>
     );
 }

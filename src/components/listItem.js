@@ -11,20 +11,16 @@ class ListItem extends React.Component {
 
         return (
 
-            <Link className = " card card-width-15"
+            <Link className = "card-width-15"
                 to= {(title)
                 ? ((metaData.comics) ? "/eve?id=" + id
                 : "/com?id=" + id)
                 : "/char?id=" + id 
                 }>
                 <Card 
-                    onClick=
-                    {() => this.props.handleClick(metaData)}
                     variant="warning"
-                    className="text-center bg-transparent">
-                    
+                    className="text-center bg-transparent">  
                         <Card.Img variant="top" src={`${thumbnail.path}.${thumbnail.extension}`}/>
-
                         <Card.Body>
                             <Card.Title>{(name)
                                     ? name
