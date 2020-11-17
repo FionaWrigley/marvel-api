@@ -1,15 +1,11 @@
-import ListItem from './ListItem';
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import axios from 'axios';
+import ListItem from './ListItem';
 import Loading from './Loading';
+import { GetCredentials } from './GetCredentials';
 
-// // const curr_date = new Date();
-const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
-const {REACT_APP_APIKEY} = process.env;
-const time_stamp = 1;
-const url = "https://gateway.marvel.com:443/v1/public/";
-
+const {REACT_APP_URL} = process.env;
 const List = ({ctype, handleClick}) => {
 
     const searchValue = useLocation()
@@ -24,12 +20,9 @@ const List = ({ctype, handleClick}) => {
     const [errorMessage, setErrorMessage] = useState('No results found');
 
     useEffect(() => {
-        axios.get(url + ctype, {
-            params: Object.assign({
-                apikey: REACT_APP_APIKEY,
-                ts: time_stamp,
-                hash: hashish
-            }, (ctype === 'comics'
+        axios.get(REACT_APP_URL + ctype + GetCredentials(), {
+            params: Object.assign(
+            (ctype === 'comics'
                 ? (searchValue !== ""
                     ? {
                         titleStartsWith: searchValue
@@ -45,12 +38,10 @@ const List = ({ctype, handleClick}) => {
             setMarvelData(response.data.data.results)
             setReady(true);
         })
-            .catch(function (err) {
-                console.log('error tracking')
+            .catch(function (err) {      
                 console.log(err);
                 setErrorMessage("An unexpected error occured");
                 setErrorFlag(true);
-                console.log("errorMessage: "+errorMessage);
             });
     }, [ctype, searchValue]);
 
@@ -67,5 +58,4 @@ const List = ({ctype, handleClick}) => {
         : (<Loading />))
     );
 }
-
 export default List;

@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Card} from 'react-bootstrap';
-import '../App.css';
-import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import {Card} from 'react-bootstrap';
+import axios from 'axios';
 import Loading from "./Loading";
-// import Spinner from 'react-bootstrap/Spinner'
+import { GetCredentials } from './GetCredentials';
+import '../App.css';
 
-const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
-const {REACT_APP_APIKEY} = process.env;
-const time_stamp = 1;
-const url = "https://gateway.marvel.com:443/v1/public/characters/";
+const {REACT_APP_URL_CHARS} = process.env;
 
 const Character = () => {
-
-    console.log("in character");
 
     const id = useLocation()
         .search
@@ -25,14 +20,7 @@ const Character = () => {
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
-
-        console.log("made it this far!!!!!!!!!!!")
-        axios.get(url + id, {
-            params: Object
-                .assign({
-                    apikey: REACT_APP_APIKEY, 
-                    ts: time_stamp, 
-                    hash: hashish})})
+        axios.get(REACT_APP_URL_CHARS + id + GetCredentials())
                 .then((response) => {
                     console.log(response)
                     setCard(response.data.data.results[0])
@@ -45,10 +33,7 @@ const Character = () => {
         
     }, [id]);
 
-
-
     return (
-
         (ready) ? (<div>
             <div className="profileCard">
                 <Card className="card-width-25">
@@ -84,11 +69,7 @@ const Character = () => {
                     </Card.Body>
                 </Card>
             </div>
-        </div>) : 
-        (
-            <Loading />
-            )
-        
+        </div>) : (<Loading />) 
     );
 
 };
