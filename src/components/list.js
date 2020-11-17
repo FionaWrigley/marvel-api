@@ -20,6 +20,8 @@ const List = ({ctype, handleClick}) => {
     const [marvelData,
         setMarvelData] = useState([]);
     const [ready, setReady] = useState(false);
+    const [errorFlag, setErrorFlag] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('No results found');
 
     useEffect(() => {
         axios.get(url + ctype, {
@@ -46,19 +48,23 @@ const List = ({ctype, handleClick}) => {
             .catch(function (err) {
                 console.log('error tracking')
                 console.log(err);
+                setErrorMessage("An unexpected error occured");
+                setErrorFlag(true);
+                console.log("errorMessage: "+errorMessage);
             });
     }, [ctype, searchValue]);
 
 
     return (
-        (ready) ? (
+        (ready) ? ( (marvelData.length > 0 ) ? (
         <div className="resultGrid">
             {marvelData.map((card, index) => <ListItem
                 card={card}
                 key={index}
                 handleClick={(metaData) => handleClick(metaData)}/>)}
-        </div>)
-        : (<Loading />)
+        </div>) : (<div className = "card custom-card">{errorMessage}</div>))
+        : ((errorFlag) ? (<div className = "card custom-card">{errorMessage}</div>)
+        : (<Loading />))
     );
 }
 
