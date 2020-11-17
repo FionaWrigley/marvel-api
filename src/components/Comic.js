@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import '../App.css';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import Loading from './Loading';
 
 // class Comic extends React.Component {
 
@@ -140,7 +141,7 @@ const Comic = () => {
                 </Card>
                 
             </div>
-        </div>) : (<div>Loading...</div>)
+        </div>) : (<Loading />)
         
     );
 

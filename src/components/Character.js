@@ -3,6 +3,8 @@ import {Card} from 'react-bootstrap';
 import '../App.css';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import Loading from "./Loading";
+// import Spinner from 'react-bootstrap/Spinner'
 
 const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
 const {REACT_APP_APIKEY} = process.env;
@@ -82,7 +84,10 @@ const Character = () => {
                     </Card.Body>
                 </Card>
             </div>
-        </div>) : (<div>Loading...</div>)
+        </div>) : 
+        (
+            <Loading />
+            )
         
     );
 

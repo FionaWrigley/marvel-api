@@ -8,12 +8,14 @@ import List from './components/List';
 import {Navbar, Nav, Form, FormControl} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
+
 const App = () => {
 
     // const [card,
     //     setCard] = useState([]);
     const [searchValue,
         setSearchValue] = useState('');
+    
 
     function handleClick(metaData) {
         // setCard(metaData);

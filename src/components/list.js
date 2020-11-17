@@ -2,6 +2,7 @@ import ListItem from './ListItem';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import Loading from './Loading';
 
 // // const curr_date = new Date();
 const hashish = "6e039380a3a1af6ca5845c27fdf089a6";
@@ -18,9 +19,9 @@ const List = ({ctype, handleClick}) => {
 
     const [marvelData,
         setMarvelData] = useState([]);
+    const [ready, setReady] = useState(false);
 
     useEffect(() => {
-
         axios.get(url + ctype, {
             params: Object.assign({
                 apikey: REACT_APP_APIKEY,
@@ -40,6 +41,7 @@ const List = ({ctype, handleClick}) => {
         }).then((response) => {
             console.log(response)
             setMarvelData(response.data.data.results)
+            setReady(true);
         })
             .catch(function (err) {
                 console.log('error tracking')
@@ -47,13 +49,16 @@ const List = ({ctype, handleClick}) => {
             });
     }, [ctype, searchValue]);
 
+
     return (
+        (ready) ? (
         <div className="resultGrid">
             {marvelData.map((card, index) => <ListItem
                 card={card}
                 key={index}
                 handleClick={(metaData) => handleClick(metaData)}/>)}
-        </div>
+        </div>)
+        : (<Loading />)
     );
 }
 
