@@ -20,11 +20,11 @@ const App = () => {
         if (key.key === "Enter") {
             const urlStr = window.location.href;
             if (urlStr.match(/com/)) {
-                window.location = "/comics?search=" + key.target.value;
+                window.location = "/iss4/comics?search=" + key.target.value;
             } else if (urlStr.match(/eve/)) {
-                window.location = "/events?search=" + key.target.value;
+                window.location = "/iss4/events?search=" + key.target.value;
             } else {
-                window.location = "/characters?search=" + key.target.value;
+                window.location = "/iss4/characters?search=" + key.target.value;
             }
         }
     }
@@ -61,41 +61,41 @@ const App = () => {
                         <Link
                             className="linkies active"
                             to=
-                            {"/characters?search=" + searchValue}
+                            {"/iss4/characters?search=" + searchValue}
                             id="characters">
                             Characters
                         </Link>
-                        <Link className="linkies" to={"/comics?search=" + searchValue} id="comics">
+                        <Link className="linkies" to={"/iss4/comics?search=" + searchValue} id="comics">
                             Comics
                         </Link>
-                        <Link className="linkies" to={"/events?search=" + searchValue} id="events">
+                        <Link className="linkies" to={"/iss4/events?search=" + searchValue} id="events">
                             Events
                         </Link>
                     </Nav>
                 </Navbar>
 
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/iss4/">
                         <List ctype="characters" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/characters">
+                    <Route exact path="/iss4/characters">
 
                         <List ctype="characters" searchValue={searchValue}/>
 
                     </Route>
-                    <Route exact path="/comics">
+                    <Route exact path="/iss4/comics">
                         <List ctype="comics" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/events">
+                    <Route exact path="/iss4/events">
                         <List ctype="events" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/char">
+                    <Route exact path="/iss4/char">
                         <Character/>
                     </Route>
-                    <Route exact path="/com">
+                    <Route exact path="/iss4/com">
                         <Comic/>
                     </Route>
-                    <Route exact path="/eve">
+                    <Route exact path="/iss4/eve">
                         <Event/>
                     </Route>
                 </Switch>
