@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import '../App.css';
 import {Link} from 'react-router-dom'
 
+//result cards 
 class ListItem extends React.Component {
 
     render() {
