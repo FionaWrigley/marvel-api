@@ -19,6 +19,7 @@ class ListItem extends React.Component {
                 }>
                 <Card 
                     variant="warning"
+                    border="none"
                     className="text-center bg-transparent">  
                         <Card.Img variant="top" src={`${thumbnail.path}.${thumbnail.extension}`}/>
                         <Card.Body>

@@ -93,8 +93,11 @@ body {
 
  .linkies {
     color: rgba(255, 255, 255, 0.5);
+    background-color: #343a40;
     text-decoration: none;
-    padding: .5em 1em .5em 1em; 
+    padding: .5em 1em .5em 1em;
+    border: none;
+    outline: none;
  }
 
  .linkies:hover {
@@ -116,6 +119,9 @@ body {
  .custom-card {
      margin: 2em;
      text-align: center;
+ }
+ .card{
+     border: 0px !important;
  }
 
 
