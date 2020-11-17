@@ -13,6 +13,7 @@ const App = () => {
 
     const [searchValue,
         setSearchValue] = useState('');
+    const {PUBLIC_URL} = process.env;
 
     function handleKeyPress(key) {
         setSearchValue(key.target.value);
@@ -20,11 +21,11 @@ const App = () => {
         if (key.key === "Enter") {
             const urlStr = window.location.href;
             if (urlStr.match(/com/)) {
-                window.location = "/iss4/comics?search=" + key.target.value;
+                window.location = PUBLIC_URL+"/comics?search=" + key.target.value;
             } else if (urlStr.match(/eve/)) {
-                window.location = "/iss4/events?search=" + key.target.value;
+                window.location = PUBLIC_URL+"/events?search=" + key.target.value;
             } else {
-                window.location = "/iss4/characters?search=" + key.target.value;
+                window.location = PUBLIC_URL+"/characters?search=" + key.target.value;
             }
         }
     }
@@ -57,45 +58,44 @@ const App = () => {
                                 placeholder="Search"
                                 className="mr-sm-2"/>
                         </Form>
-
                         <Link
                             className="linkies active"
                             to=
-                            {"/iss4/characters?search=" + searchValue}
+                            {PUBLIC_URL+"/characters?search=" + searchValue}
                             id="characters">
                             Characters
                         </Link>
-                        <Link className="linkies" to={"/iss4/comics?search=" + searchValue} id="comics">
+                        <Link className="linkies" to={PUBLIC_URL+"/comics?search=" + searchValue} id="comics">
                             Comics
                         </Link>
-                        <Link className="linkies" to={"/iss4/events?search=" + searchValue} id="events">
+                        <Link className="linkies" to={PUBLIC_URL+"/events?search=" + searchValue} id="events">
                             Events
                         </Link>
                     </Nav>
                 </Navbar>
 
                 <Switch>
-                    <Route exact path="/iss4/">
+                    <Route exact path= {PUBLIC_URL+"/"}>
                         <List ctype="characters" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/iss4/characters">
+                    <Route exact path={PUBLIC_URL+"/characters"}>
 
                         <List ctype="characters" searchValue={searchValue}/>
 
                     </Route>
-                    <Route exact path="/iss4/comics">
+                    <Route exact path={PUBLIC_URL+"/comics"}>
                         <List ctype="comics" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/iss4/events">
+                    <Route exact path={PUBLIC_URL+"/events"}>
                         <List ctype="events" searchValue={searchValue}/>
                     </Route>
-                    <Route exact path="/iss4/char">
+                    <Route exact path={PUBLIC_URL+"/char"}>
                         <Character/>
                     </Route>
-                    <Route exact path="/iss4/com">
+                    <Route exact path={PUBLIC_URL+"/com"}>
                         <Comic/>
                     </Route>
-                    <Route exact path="/iss4/eve">
+                    <Route exact path={PUBLIC_URL+"/eve"}>
                         <Event/>
                     </Route>
                 </Switch>

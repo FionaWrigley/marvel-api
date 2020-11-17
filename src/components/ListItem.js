@@ -8,14 +8,15 @@ class ListItem extends React.Component {
     render() {
         const metaData = this.props.card;
         const {id, name, title, thumbnail} = metaData;
+        const {PUBLIC_URL} = process.env;
 
         return (
 
             <Link className = "card-width-15"
                 to= {(title)
-                ? ((metaData.comics) ? "/eve?id=" + id
-                : "/com?id=" + id)
-                : "/char?id=" + id 
+                ? ((metaData.comics) ? (PUBLIC_URL + "/eve?id=" + id)
+                : (PUBLIC_URL+"/com?id=" + id))
+                : (PUBLIC_URL+"/char?id=" + id) 
                 }>
                 <Card 
                     variant="warning"
