@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/iss4/static/css/main.ac835bac.chunk.css",
+    "main.js": "/iss4/static/js/main.14c51eff.chunk.js",
+    "main.js.map": "/iss4/static/js/main.14c51eff.chunk.js.map",
+    "runtime-main.js": "/iss4/static/js/runtime-main.e68002a0.js",
+    "runtime-main.js.map": "/iss4/static/js/runtime-main.e68002a0.js.map",
+    "static/css/2.95f25948.chunk.css": "/iss4/static/css/2.95f25948.chunk.css",
+    "static/js/2.35d232b9.chunk.js": "/iss4/static/js/2.35d232b9.chunk.js",
+    "static/js/2.35d232b9.chunk.js.map": "/iss4/static/js/2.35d232b9.chunk.js.map",
+    "static/js/3.0ae344ff.chunk.js": "/iss4/static/js/3.0ae344ff.chunk.js",
+    "static/js/3.0ae344ff.chunk.js.map": "/iss4/static/js/3.0ae344ff.chunk.js.map",
+    "index.html": "/iss4/index.html",
+    "static/css/2.95f25948.chunk.css.map": "/iss4/static/css/2.95f25948.chunk.css.map",
+    "static/css/main.ac835bac.chunk.css.map": "/iss4/static/css/main.ac835bac.chunk.css.map",
+    "static/js/2.35d232b9.chunk.js.LICENSE.txt": "/iss4/static/js/2.35d232b9.chunk.js.LICENSE.txt",
+    "static/media/MarvelLogo.41df6f0e.png": "/iss4/static/media/MarvelLogo.41df6f0e.png",
+    "static/media/App.css": "/iss4/static/media/wallpaper.74a71914.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e68002a0.js",
+    "static/css/2.95f25948.chunk.css",
+    "static/js/2.35d232b9.chunk.js",
+    "static/css/main.ac835bac.chunk.css",
+    "static/js/main.14c51eff.chunk.js"
+  ]
+}
