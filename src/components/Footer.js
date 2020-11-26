@@ -1,7 +1,5 @@
 import React from 'react';
 import {Card} from 'react-bootstrap';
-// import { MDBContainer,  MDBFooter } from "mdbreact";
-//import * as bs from 'bootstrap/dist/css/bootstrap.css';
 
 class Footer extends React.Component {
     render() {
@@ -16,5 +14,4 @@ class Footer extends React.Component {
         );
     }
 }
-
 export default Footer;

@@ -9,11 +9,9 @@ import { GetCredentials } from './GetCredentials';
 const {REACT_APP_URL_COMICS} = process.env;
 
 const Comic = () => {
-
     const id = useLocation()
         .search
         .replace('?id=', '');
-
     const [card,
         setCard] = useState([]);
     const [ready, setReady] = useState(false);
@@ -30,7 +28,6 @@ const Comic = () => {
                     console.log('error tracking')
                     console.log(err);
                 });
-        
     }, [id]);
 
     return (
@@ -72,9 +69,6 @@ const Comic = () => {
                 
             </div>
         </div>) : (<Loading />)
-        
     );
-
 };
-
 export default Comic;
