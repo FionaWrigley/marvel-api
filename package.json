@@ -1,7 +1,7 @@
 {
 
-	"homepage": "https://fionawrigley.github.io/iss4",
-	"name": "iss4",
+	"homepage": "https://fionawrigley.github.io/marvel-api",
+	"name": "marvel-api",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
