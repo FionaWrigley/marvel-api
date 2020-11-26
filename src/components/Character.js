@@ -9,11 +9,9 @@ import '../App.css';
 const {REACT_APP_URL_CHARS} = process.env;
 
 const Character = () => {
-
     const id = useLocation()
         .search
         .replace('?id=', '');
-    console.log(id);
 
     const [card,
         setCard] = useState([]);
@@ -22,12 +20,10 @@ const Character = () => {
     useEffect(() => {
         axios.get(REACT_APP_URL_CHARS + id + GetCredentials())
                 .then((response) => {
-                    console.log(response)
                     setCard(response.data.data.results[0])
                     setReady(true);
                 })
                 .catch(function (err) {
-                    console.log('error tracking')
                     console.log(err);
                 });
         

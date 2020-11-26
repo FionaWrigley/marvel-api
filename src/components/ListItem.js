@@ -13,7 +13,7 @@ class ListItem extends React.Component {
 
         return (
 
-            <Link className = "card-width-15"
+            <Link onClick = {this.props.handleCardClick} className = "card-width-15"
                 to= {(title)
                 ? ((metaData.comics) ? (PUBLIC_URL + "/eve?id=" + id)
                 : (PUBLIC_URL+"/com?id=" + id))

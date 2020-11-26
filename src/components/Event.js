@@ -22,12 +22,10 @@ const Event = () => {
 
         axios.get(REACT_APP_URL_EVENTS + id + GetCredentials())
                 .then((response) => {
-                    console.log(response)
                     setCard(response.data.data.results[0])
                     setReady(true);
                 })
                 .catch(function (err) {
-                    console.log('error tracking')
                     console.log(err);
                 });
         

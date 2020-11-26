@@ -1,25 +1,27 @@
 import React, {useState, useEffect} from 'react';
-import {useLocation} from "react-router-dom";
 import axios from 'axios';
 import ListItem from './ListItem';
 import Loading from './Loading';
-import { GetCredentials } from './GetCredentials';
+import {GetCredentials} from './GetCredentials';
 
 const {REACT_APP_URL} = process.env;
 
-const List = ({ctype, searchValue}) => {
+const List = ({ctype, searchValue, handleCardClick}) => {
 
     const searchVal = searchValue;
 
-    const [marvelData, setMarvelData] = useState([]);
-    const [ready, setReady] = useState(false);
-    const [errorFlag, setErrorFlag] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('No results found');
+    const [marvelData,
+        setMarvelData] = useState([]);
+    const [ready,
+        setReady] = useState(false);
+    const [errorFlag,
+        setErrorFlag] = useState(false);
+    const [errorMessage,
+        setErrorMessage] = useState('No results found');
 
     useEffect(() => {
         axios.get(REACT_APP_URL + ctype + GetCredentials(), {
-            params: Object.assign(
-            (ctype === 'comics'
+            params: Object.assign((ctype === 'comics'
                 ? (searchVal !== ""
                     ? {
                         titleStartsWith: searchVal
@@ -31,27 +33,30 @@ const List = ({ctype, searchValue}) => {
                     }
                     : "")))
         }).then((response) => {
-            console.log(response)
             setMarvelData(response.data.data.results)
             setReady(true);
         })
-            .catch(function (err) {      
+            .catch(function (err) {
                 console.log(err);
                 setErrorMessage("An unexpected error occured");
                 setErrorFlag(true);
             });
-    }, [ctype, searchValue]);
+    }, [ctype, searchVal]);
 
-    return (
-        (ready) ? ( (marvelData.length > 0 ) ? (
-        <div className="resultGrid">
-            {marvelData.map((card, index) => 
-
-            <ListItem card={card} key={index}/>)}
-
-        </div>) : (<div className = "card custom-card">{errorMessage}</div>))
-        : ((errorFlag) ? (<div className = "card custom-card">{errorMessage}</div>)
-        : (<Loading />))
-    );
+    return ((ready)
+        ? ((marvelData.length > 0)
+            ? (
+                <div className="resultGrid">
+                    {marvelData.map((card, index) => <ListItem card={card} key={index} handleCardClick={handleCardClick}/>)}
+                </div>
+            )
+            : (
+                <div className="card custom-card">{errorMessage}</div>
+            ))
+        : ((errorFlag)
+            ? (
+                <div className="card custom-card">{errorMessage}</div>
+            )
+            : (<Loading/>)));
 }
 export default List;
